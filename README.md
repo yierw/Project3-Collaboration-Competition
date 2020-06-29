@@ -25,10 +25,11 @@ The environment is considered solved, when the average (over 100 episodes) of th
 
 ### Getting Started
 
-1. Download `python/` folder from the udacity/deep-reinforcement-learning repository (https://github.com/udacity/deep-reinforcement-learning). This folder  edited to include a few additional pip packages needed for this project.
+1. Download the project folder
 
+2. Download `python/` folder from the udacity/deep-reinforcement-learning repository (https://github.com/udacity/deep-reinforcement-learning) and put in the project folder. `python/` include a few additional pip packages needed for this project.
 
-2. Download the environment from one of the links below (You need only select the environment that matches your operating system), unzip (or decompress) the file, and place the file in the project folder `Project3-Collaboration&Competition`
+3. Download the environment from one of the links below (You need only select the environment that matches your operating system), unzip (or decompress) the file, and place the file in the project folder `Project3-Collaboration&Competition`
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Tennis/Tennis_Linux.zip)
     - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Tennis/Tennis.app.zip)
     - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Tennis/Tennis_Windows_x86.zip)
@@ -43,5 +44,10 @@ The environment is considered solved, when the average (over 100 episodes) of th
 `pip install -r requirements.txt`
 
 ### Instructions
+What's inside?
+- `buffer.py` stores transitions collected at each step and reuse them for training
+- `model.py` defines the actor and critic network architecture
+- `ddpg.py`  initializes and updates critic and actor networks for each agent
+- `maddpg.py` controls the the multi-agent system
 
 Follow the instructions in `Tennis.ipynb` to get started with training your own agent!  

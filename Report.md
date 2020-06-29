@@ -2,7 +2,7 @@
 
 ### Learning Algorithm
 
-This project implemented a Multi-agent Reinforcement Learning algorithm - MADDPG [1]. This method has a framework of centralized training and decentralized execution. Each agent in the multi-agent system has its own actor network and critic network. The actor network of agent $i$ sees local information $o_i$ and outputs an action $a_i$ for itself only. The actor network of agent $i$ takes as input a global state information (in the simplest case, the global state information could consist of the observations of all agents) as well as the actions of all agents and outputs the Q-value for agent $i$.  Compared to regular actor-critic algorithms, the critic in MADDPG is augmented with extra information about the policies of other agents and is called a centralized action-value function. A primary motivation behind MADDPG is that, if we know the actions taken by all agents, the environment is stationary even as the policies change.
+This project implemented a Multi-agent Reinforcement Learning algorithm - MADDPG [1]. This method has a framework of centralized training and decentralized execution. Each agent in the multi-agent system has its own actor network and critic network. The actor network of agent `i` sees local information `o_i` and outputs an action `a_i` for itself only. The actor network of agent $i$ takes as input a global state information (in the simplest case, the global state information could consist of the observations of all agents) as well as the actions of all agents and outputs the Q-value for agent `i`.  Compared to regular actor-critic algorithms, the critic in MADDPG is augmented with extra information about the policies of other agents and is called a centralized action-value function. A primary motivation behind MADDPG is that, if we know the actions taken by all agents, the environment is stationary even as the policies change.
 
 Since each centralized action-value function is learned separately, agents can have arbitrary reward structures, including conflicting rewards in a competitive setting. In this project, we tested a collaborative game.
 
@@ -38,7 +38,7 @@ class Actor(nn.Module):
         norm = torch.norm(h3)
         return 10.0*(F.tanh(norm))*h3/norm if norm > 0 else 10*h3
 ```
-h3 is a 2D vector (a force that is applied to the agent). We bound the norm of the vector to be between 0 and 10. This makes the training easier to convergence with larger learning rate.
+Apply extra force `torch.norm(h3)` to the actor of agent. And the norm of the vector is bounded to be between 0 and 10. This makes the training easier to be converged with larger learning rate.
 
 ```Python
 class Critic(nn.Module):
@@ -70,7 +70,7 @@ The critic network represents the centralized action-value function, which takes
 ### Plot of Rewards
 ![Image description](rewards.png)
 
-The agents are trained with 2500 episodes. The problem is solved at around 2010 episodes. 
+The agents are trained with 2500 episodes and the `Tennis` environment is solved at around 2010 episodes.
 
 ```Python
 self.actor_scheduler = MultiStepLR(self.actor_optimizer, milestones = [1500, 2000], gamma = 0.1)
@@ -78,12 +78,7 @@ self.actor_scheduler = MultiStepLR(self.actor_optimizer, milestones = [1500, 200
 `MultiStepLR` is add to actor optimizer. It decays the learning rate of each parameter group by 0.1 once the number of epoch reaches 1500 and 2000. This implementation stables the model training.
 
 
-What's inside:
-- `model.py` defines the actor and critic network architecture
-- `OUNoise.py` Ornstein-Uhlenbeck process, used for adding exploration
-- `buffer.py` stores transitions collected at each step and reuse them for training
-- `ddpg.py`  initializes and updates critic and actor networks for each agent
-- `maddpg.py` controls the behavior of the multi-agent system
+
 
 The expected outputs of this implement are:
 - critic network weights: `checkpoint_critic1.pth`, `checkpoint_critic2.pth`
