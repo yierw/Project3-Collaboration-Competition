@@ -12,7 +12,7 @@ scipy==1.2.1
 Box2D==2.3.10
 grpc==0.3-19
 lz4==3.0.2
-Pillow==7.1.2
+Pillow==8.1.1
 protobuf==3.12.1
 pygame==1.9.6
 PyYAML==5.3.1
