@@ -13,6 +13,6 @@ Box2D==2.3.10
 grpc==0.3-19
 lz4==3.0.2
 Pillow==7.1.2
-protobuf==3.12.1
+protobuf==3.18.3
 pygame==1.9.6
 PyYAML==5.3.1
